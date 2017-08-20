@@ -1,0 +1,41 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+  .image {
+    margin:10px 300px;
+    border-width: 20px;
+    border-radius: 50px;
+    max-width: 500px;
+    border: solid;
+  }
+  
+  .Bold{
+    font-weight: bold;
+  }
+
+  .Sparkle {
+  
+  font-size:40px;
+  font-family:impact;
+  padding-top: 0px;
+
+  
+ -webkit-text-fill-color: transparent;
+ background: -webkit-linear-gradient(transparent, transparent),
+             url(http://www.myspacehippo.com/files/glitterbacks/bg345.gif) repeat;
+ background: -o-linear-gradient(transparent, transparent);
+ -webkit-background-clip: text;
+}

@@ -1,0 +1,36 @@
+<!-- <h2><%= @image.email %></h2> -->
+
+
+<!-- 
+<a href="/users/<%= @user.id %>/edit" class="btn btn-primary">Edit user</a>
+<br>
+<br>
+# <%= form_tag %>
+   <input type="submit" class="btn btn-danger" value="Delete User" >
+-->
+
+
+
+
+<br>
+<a href="/users" class="btn btn-primary">Back to the Home page</a>
+</div>
+
+<input type="file" accept="image/*;capture=camera">
+
+<input type="file" accept="video/*;capture=camcorder">
+<input type="file" accept="audio/*;capture=microphone">
+
+<input type="file" capture="camera" accept="image/*" id="cameraInput" name="cameraInput">
+
+ <a href="#" id="take-photo" title="Take Photo"><i class="material-icons">camera_alt</i></a>
+      <a href="#" id="download-photo" download="selfie.png" title="Save Photo" class="disabled"><i class="material-icons">file_download</i></a>  
+    </div>
+
+    <!- Hidden canvas element. Used for taking snapshot of video.
+<!--     <canvas> </canvas> -->
+
+<!--   </div>
+
+</div>
+ --> 

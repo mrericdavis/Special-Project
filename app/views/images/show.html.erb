@@ -1,0 +1,18 @@
+<h1><%= @image.title %></h1>
+<h1> <img src="<%= @image.url %>">  </h1>
+<ul>
+<% @image.comments.each do |comment| %>
+<li>   <%= comment.text %>    </li>
+ <%end%>
+</ul>
+
+<%= form_tag "/comments", method: "post" do %>
+  <div class="form-group">
+    Comment: <input type="text"  name=text value="">
+  </div>
+  <div>
+    <input type="hidden" class="form-control" name=image_id value="<%= @image.id %>">
+ </div>
+  <input type="submit" class="btn btn-default" value="Submit Comment">
+<% end %>
+

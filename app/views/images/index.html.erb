@@ -1,0 +1,32 @@
+<h2> <% @images.each do |image| %> 
+   
+
+      
+     <h2> <%= image.user.name %></h2>
+    <h5 class="Sparkle"> <%= image.title %> </h5>
+   
+     <h2>
+
+   <a href="/images/<%= image.id %>"> <img src="<%= image.url %> " class="image"> </a>
+
+
+
+<%= form_tag "/comments", method: "post" do %>
+  <div>
+    Comment: <input type="text" class="form-control" name=text value="">
+  </div>
+  <div>
+    <input type="hidden" class="form-control" name=image_id value="<%= image.id %>">
+ </div>
+  <input type="submit" class="btn btn-default" value="Submit Comment">
+<% end %>
+<% end %>
+</h2>
+
+
+  <div id="app">  
+    <div>
+    </div>
+      Comment : <input type="text" v-model="newComment"><br>
+      <button v-on:click="CreateComment()">Submit</button>
+</div>

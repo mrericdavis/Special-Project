@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <title>Lit Pics</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+
+ 
+     <nav class="white" role="navigation" >
+       <div class="nav-wrapper container">
+         <a id="logo-container" href="/users#" class="brand-logo" >"Lit Pics"</a>
+          <ul class="right hide-on-med-and-down">
+               <li><a href="/login">Login</a></li>
+               <li><a href="/logout">Log Out</a></li>
+               <li><a href="/signup">Signup</a></li>
+               <li><a href="/users">People Getting Lit</a></li>
+               <li><a href="/images">Images Index</a></li>
+               <li><a href="/images/new">Upload A New Image</a></li>
+               <li><a href="/">Home</a></li>
+          </ul>
+         <a href="/#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+       </div>
+     </nav>
+
+
+        <div class="container">
+        <% flash.each do |name, message| %>
+          <div class="alert alert-<%= name %> alert-dismissible fade in" role="alert">
+           <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</span><span class="sr-only">Close</span></button>
+           <%= message.html_safe %>  
+          </div>
+        <% end %>
+      </div>
+    
+    <div class="container">
+      <%= yield %>
+    </div>
+
+
+
+ 
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="/js/materialize.js"></script>
+  <script src="/js/init.js"></script>
+  </body>
+</html>
