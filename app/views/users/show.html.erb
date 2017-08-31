@@ -1,20 +1,24 @@
 <h1 class="Sparkle"><%= @user.name %></h1>
 
+<div class="font">
+
   <div class="row">
-<% @user.images.each do |image| %>
+        <% @user.images.each do |image| %>
 
    <div class="row">
     <div class="col s12 m6">
       <div class="card" >
         <div class="card-image">
     <div class="card-panel hoverable">
-          <img src="<%= image.url%>" class="z-depth-5" class="card-panel hoverable" class="carousel-item">
-</div>
+          <img src="<%= image.url%>" class="z-depth-5" class="card-panel hoverable" class="carousel-item" class="Sparkle">
+  </div>
           <span class="card-title"><%= image.title%> </span>
       
         </div>
         <div class="card-content">
-          <p><%= image.description%> </p>
+        <% image.comments.each do |comment| %>
+            <h6 class="index"> <%= comment.text %> </h6>
+            <% end %>
         </div>
       </div>
     </div>
@@ -40,24 +44,24 @@
 
 
       
-        
+   
             <input type="file" accept="image/*;capture=camera" class="center-align">
             <input type="file" accept="video/*;capture=camcorder">
             <input type="file" accept="audio/*;capture=microphone">
             <input type="file" capture="camera" accept="image/*" id="cameraInput" name="cameraInput">
-     
+        </div>
         
        
 
              <a href="/#" id="take-photo" title="Take Photo"><i class="material-icons">camera_alt</i></a>
                   <a href="#" id="download-photo" download="selfie.png" title="Save Photo" class="disabled"><i class="material-icons">file_download</i></a>  
                 </div>
-            
+      
     <!-- Hidden canvas element. Used for taking snapshot of video. -->
     <canvas> </canvas>
 
   </div>
-
 </div>
+  </div>
 
 

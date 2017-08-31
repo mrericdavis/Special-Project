@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
 
+  namespace :api do
+    namespace :v1 do
+      get  '/images' => 'images#index'
+      get  '/images/:id' => 'images#show'
+      post '/images' => 'images#create' 
+      get "/comments" => "comments#index"
+      get "/comments" => "comments#show"
+      post "/comments" => "comments#create"
+    end
+  end
+
   get "/" => "users#home"
   
   get "/users" => "users#index"
@@ -22,7 +33,7 @@ Rails.application.routes.draw do
 
   post "/relationships" => "relationships#create"
 
-  
+  get "/friends" => "users#friend"
   get "/signup" => "users#new"
   post "/users" => "users#create"
 

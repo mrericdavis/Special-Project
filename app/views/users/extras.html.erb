@@ -1,0 +1,13 @@
+
+<ul>
+<% @image.comments.each do |comment| %>
+<li>   <%= comment.text %>    </li>
+ <%end%>
+</ul>
+
+    <%= form_tag "/comments" , method: :post do %>
+    Comment: <input type="text" name="text">   
+    <%= hidden_field_tag 'image_id', @image.id %> 
+    <input class="index" type="submit" value="submit">
+    </div>
+    <% end %>

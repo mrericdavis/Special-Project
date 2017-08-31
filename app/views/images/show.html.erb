@@ -1,18 +1,42 @@
-<h1><%= @image.title %></h1>
-<h1> <img src="<%= @image.url %>">  </h1>
-<ul>
-<% @image.comments.each do |comment| %>
-<li>   <%= comment.text %>    </li>
- <%end%>
-</ul>
 
-<%= form_tag "/comments", method: "post" do %>
-  <div class="form-group">
-    Comment: <input type="text"  name=text value="">
+
+
+<% @names[0..9].each do |name| %>
+  <div class="chip">
+   <%= name %>
   </div>
-  <div>
-    <input type="hidden" class="form-control" name=image_id value="<%= @image.id %>">
- </div>
-  <input type="submit" class="btn btn-default" value="Submit Comment">
 <% end %>
 
+
+ 
+        <h1 class="Sparkle"><%= @image.title %></h1>
+        <h1 class="center-align"> <img lass="card-panel hoverable" class="showpic"  src="<%= @image.url %>"></h1>
+
+
+
+
+         
+
+        <div id="app" data-imageid="<%= @image.id %>">
+          <div v-for="comment in comments">
+            {{comment.username}} - {{comment.text}}
+          </div> 
+        </div>
+             <br>
+        Enter new comment: <input type="text" v-model="newComment">
+        <input type="hidden" name="form_" value="">
+        <button class="index" v-on:click="CreateComment()">Enter Comment</button>
+        </div>
+        <br>
+        <br>
+        <br>
+     
+  
+
+
+<style type="text/css">
+  .showpic {
+    max-height: 900px;
+    max-width: 700px;
+  }
+</style>

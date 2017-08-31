@@ -1,32 +1,60 @@
-<h2> <% @images.each do |image| %> 
-   
+<div id="app">
+ 
+  <div class="row">
+     <% @images.each do |image| %>
+      <div class="col s12">
+       <h2 class="Sparkle" id="name" > <a href="/users/<%= image.user.id %>"><%= image.user.name %></a>  </h2>  
+        <div class="card" class="showpic"> 
+           <div class="card-image waves-effect waves-block waves-light">
+            <a href="/images/<%= image.id %>">  <img class="activator" class="imgsize"  src="<%= image.url %> " style="object-fit: cover; max-height: 900px;"></a> 
+           </div>
+         <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4"> <%= image.title %>  
+           
 
+            
+            <i class="material-icons right">more_vert</i></span>
+
+            <p><a href="/images/<%= image.id %>"></a></p>
+         </div>
+        <div class="card-reveal">
+          
+          <span class="card-title grey-text text-darken-4"><%= image.title %> <i class="material-icons right">close</i></span>
+           <% image.comments.each do |comment| %>
+            <ul>
+              <li><p class="index"><%= comment.user.name %> - <%= comment.text %> </p></li> 
+            </ul>
+           <%end%>
+            <br>
+
+            <br>
       
-     <h2> <%= image.user.name %></h2>
-    <h5 class="Sparkle"> <%= image.title %> </h5>
-   
-     <h2>
-
-   <a href="/images/<%= image.id %>"> <img src="<%= image.url %> " class="image"> </a>
-
-
-
-<%= form_tag "/comments", method: "post" do %>
-  <div>
-    Comment: <input type="text" class="form-control" name=text value="">
+              <%= form_tag "/comments" , method: :post do %>
+                Comment: <input type="text" class="index" name="text">   
+                <%= hidden_field_tag 'image_id', image.id %> 
+                <input class="index" type="submit" value="submit">
+              <% end %>
+            </div>
+     </div>
+   <%end%>
   </div>
-  <div>
-    <input type="hidden" class="form-control" name=image_id value="<%= image.id %>">
  </div>
-  <input type="submit" class="btn btn-default" value="Submit Comment">
-<% end %>
-<% end %>
-</h2>
 
 
-  <div id="app">  
-    <div>
-    </div>
-      Comment : <input type="text" v-model="newComment"><br>
-      <button v-on:click="CreateComment()">Submit</button>
-</div>
+
+
+<style type="text/css">
+
+  .imgsize{
+    max-height: 100px;
+    max-width: 100px;
+    width: 90%;
+    margin: 0 auto;
+
+  }
+</style>
+
+<!-- 
+      <div v-for="comment in comments">{{comment.username}} - {{comment.text}}</div> 
+      Enter Comment: <input type="text" v-model="newComment">
+      <button class="index" v-on:click="CreateComment()">Submit</button> -->

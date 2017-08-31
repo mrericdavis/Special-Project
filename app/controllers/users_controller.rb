@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:home, :new, :create]
 
   def index
     if current_user
@@ -19,12 +19,13 @@ class UsersController < ApplicationController
     name: params[:name],
     email: params[:email],
     password: params[:password],
+    avatar: params[:url],
     password_confirmation: params[:password_confirmation]
     )
     if user.save
       session[:user_id] = user.id
       flash[:success] = 'Successfully created User!'
-      redirect_to '/'
+      redirect_to '/images'
     else
       flash[:warning] = 'Invalid email or password!'
       redirect_to '/signup'
@@ -50,5 +51,18 @@ class UsersController < ApplicationController
 
   def home
     render "home.html.erb", layout: "home.html.erb"
+  end
+
+  def friend
+    @users = current_user.following
+    # @images = Image.all.reverse
+    @images = []
+    @users.each do |user|
+      user.images.each do |image|
+        @images << image
+      end
+    end
+    @images.sort_by { |image| image.created_at }
+    render "friend.html.erb"
   end
 end

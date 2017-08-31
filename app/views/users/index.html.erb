@@ -1,20 +1,31 @@
 
 
-  <div class="carousel">
-    <% @users.each do |user| %>
-      <div class="carousel-item" href="#one!">
-        <p class="Sparkle"> <%= user.name %></p>
-             <a   href="/users/<%= user.id %>"><img src="<%= user.avatar %>" style="object-fit: cover; width: 200px; height: 100px">
-                        <% if current_user && current_user.following.include?(user) %>
-                  <p class="Bold">(Already Friends)</p>
-                <% else %>
-                  <%= form_tag "/relationships", method: :post do %>
-                    <input type="hidden" name="followed_id" value="<%= user.id %>">
-                    <input type="submit" class="btn btn-default" value="Follow User">
-                  <% end %>
-                <% end %>
-      </div>
-    <% end %>
+<div class="carousel carousel-slider center" data-indicators="true" style="object-fit: cover; height: 750px;">
+
+  <% @users.each do |user| %>
+    <a class="carousel-item" href="/users/<%= user.id %>">
+      <p class="Sparkle" id="name"><%= user.name %></p>
+      <img src="<%= user.avatar %>" style="object-fit: cover; width: 700px; height: 510px">
+        <br>
+        <br>
+        <% if current_user && current_user.following.include?(user) %>
+          <p class="Bold">(Already Lit)</p>
+        <% else %>
+          <%= form_tag "/relationships", method: :post do %>
+              <input type="hidden" name="followed_id" value="<%= user.id %>">
+              <input type="submit" class="btn btn-default" value="Follow User">
+          <% end %>
+        <% end %>
+    </a>
+  <% end %>
+</div>
+<!-- 
+
+<div id="app">
+  <div>
+    Enter new comment: <input type="text" v-model="newComment">
+    <button v-on:click="CreateComment()">Submit Comment</button>
   </div>
-
-
+  <div v-for="comment in comments">{{comment.username}} - {{comment.text}}</div> 
+</div>
+ -->

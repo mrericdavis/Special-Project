@@ -14,7 +14,3 @@
 //= require jquery
 //= require vue
 //= require_tree .
-
-$(document).ready(function() {
-  $('.carousel').carousel();
-});
