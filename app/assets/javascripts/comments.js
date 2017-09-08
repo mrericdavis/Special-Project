@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
           Rails.ajax({
             url: "/api/v1/comments",
             type: "POST",
-            data: `form_text=${this.newComment}&form_image_id=${this.imageId}`,
+            data: "form_text=" + this.newComment + "&form_image_id=" + this.imageId,
             success: function(response) {
               console.log('success!!!', response);
               this.comments.push(response);
