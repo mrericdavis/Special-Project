@@ -4,6 +4,12 @@ class ImagesController < ApplicationController
     @images = Image.all.reverse
     render "index.html.erb"
   end
+
+  def litpics
+    @users = User.all 
+    @images = Image.all.reverse
+    render "litpics.html.erb"
+  end
   
   def new
     @user = User.find_by(params[:id])
@@ -46,6 +52,38 @@ class ImagesController < ApplicationController
     @data = response.body
 
     @names = @data["outputs"][0]["data"]["concepts"].map { |concept| concept["name"] }
+    @names = @names[0..9]
+    if @names.include? "bed" 
+      @message = "GET OUT OF BED"
+    elsif @names.include? "dog"
+      @message = "NOT MY DOG"
+    elsif @names.include? "nude"
+      @message = "PUT SOME DAMN CLOTHES ON"
+    elsif @names.include? "cat"
+      @message = "GOT DAMN CAT"
+    elsif @names.include? "money"
+      @message = "GIVE ERIC SOME"
+    elsif @names.include? "Squad"
+      @message = "SQUAADDDD"
+    elsif (@names & ["party", "crowd", "nightclub", "performance", "concert", "supercar", "celebration", "fashion"]).length > 0
+      @message = "THIS PIC IS LIT"
+    elsif @names.include? "car"
+      @message = "NICE CAR"
+    elsif @names.include? "wedding"
+      @message = "CONGRATULATIONS!!!!"
+    elsif @names.include? "fire"
+      @message = "THATS HOT!!!!"
+    elsif @names.include? "baby"
+      @message = "BABIES ARE AWSOME!!!!"
+    elsif @names.include? "food"
+      @message = "THAT LOOKS GOOD!!!!"
+    elsif @names.include? "house"
+      @message = "NICE HOME!!!!"
+    elsif @names.include? "bus"
+      @message = "NICE BUS!!!!"
+    elsif @names
+      @message = "NOT LIT AT ALL"  
+    end
     render "show.html.erb"
   end
 
@@ -56,10 +94,9 @@ class ImagesController < ApplicationController
   end
 
   def destroy
-    @images = Image.find_by(id: params[:id])
+    @image = Image.find_by(id: params[:id])
     @image.delete
-    flash[:danger] = "image Succesfully Destroyed"
-    redirect_to "/images"
+    redirect_to "/users"
   end
 end
 

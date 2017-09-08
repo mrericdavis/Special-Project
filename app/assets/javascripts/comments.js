@@ -1,11 +1,16 @@
 /* global Vue, $, Rails */
 document.addEventListener("DOMContentLoaded", function(event) { 
+
+
+  Vue.component('star-rating', VueStarRating.default);
+  console.log("hello");
   var app = new Vue({
     el: '#app',
     data: {
       comments: [], 
       newComment: " ",
-      imageId: document.querySelector("#app").dataset.imageid
+      imageId: document.querySelector("#app").dataset.imageid,
+      rating: 1
     },
     mounted: function() {
       $.ajax({

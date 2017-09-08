@@ -1,19 +1,25 @@
 
 
 
-<% @names[0..9].each do |name| %>
+<% @names.each do |name| %>
   <div class="chip">
    <%= name %>
   </div>
 <% end %>
 
-
- 
-        <h1 class="Sparkle"><%= @image.title %></h1>
-        <h1 class="center-align"> <img lass="card-panel hoverable" class="showpic"  src="<%= @image.url %>"></h1>
-
-
-
+        
+        <h1 class="Sparkle" ><a href="/users/<%= @image.user.id %>"><%= @image.user.name %> </a> - <%= @image.title %></h1>
+      <div class="special-i">
+          <% if  @message == "THIS PIC IS LIT" %>
+            <h1 class="center-align"> <img class="card-panel hoverable litty" id="showpic" src="<%= @image.url %>"></h1>
+          <% else %>
+             <h1 class="center-align"> <img class="card-panel hoverable" id="showpic" src="<%= @image.url %>"></h1>
+          <% end %>   
+         <span class="Sparkle2"><%= @message %></span>
+      </div> 
+       <br>
+       <br>
+       <br>
 
          
 
@@ -21,22 +27,43 @@
           <div v-for="comment in comments">
             {{comment.username}} - {{comment.text}}
           </div> 
+               <br>
+          Enter new comment: <input type="text" v-model="newComment">
+          <input type="hidden" name="form_" value="">
+          <button class="index" v-on:click="CreateComment()">Enter Comment</button>
         </div>
-             <br>
-        Enter new comment: <input type="text" v-model="newComment">
-        <input type="hidden" name="form_" value="">
-        <button class="index" v-on:click="CreateComment()">Enter Comment</button>
         </div>
         <br>
         <br>
         <br>
      
-  
+
+
+
+
+
 
 
 <style type="text/css">
-  .showpic {
-    max-height: 900px;
-    max-width: 700px;
-  }
+  #showpic {
+    height: 500px;
+    width: auto;
+    min-width: 500px;
+    min-height: 400px;
+    max-height: 1000px;
+    max-width: 1000px;
+}
+
+  .litty{
+    border: 20px solid transparent;
+    border-image: url(https://ak5.picdn.net/shutterstock/videos/24162520/thumb/1.jpg) 30 stretch;
+}
+
 </style>
+
+
+<script type="text/javascript">
+function changeStar() {
+   
+}
+</script>

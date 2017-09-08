@@ -21,29 +21,24 @@
           <ul class="right hide-on-med-and-down">
               <% if current_user %>
                <li><a class="font" href="/logout">Log Out</a></li>
+               <li><a class="font" href="/profile">My Profile</a></li>
               <% else %>
                <li><a class="font" href="/login">Login</a></li>
                <li><a class="font" href="/signup">Signup</a></li>
+               <li><a class="font" href="/">Home</a></li>
               <% end %>
                <li><a class="font" href="/users">People Getting Lit</a></li>
-               <li><a class="font" href="/friends">Friend</a></li>
-               <li><a class="font" href="/images">Images Index</a></li>
+               <li><a class="font" href="/friends">Friends</a></li>
+               <li><a class="font" href="/images">All Images</a></li>
+               <!-- <li><a class="font" href="/litpics">Lit</a></li> -->
                <li><a class="font" href="/images/new">Upload A New Image</a></li>
-               <li><a class="font" href="/">Home</a></li>
           </ul>
          <a href="/#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
        </div>
      </nav>
 
 
-        <div class="container">
-         <% flash.each do |name, message| %>
-          <div class="alert alert-<%= name %> alert-dismissible fade in" role="alert">
-            
-             <%= message.html_safe %>  
-          </div>
-         <% end %>
-        </div>
+
     
     <div class="container">
       <%= yield %>
@@ -55,6 +50,7 @@
 
 
   <!--  Scripts-->
+  <script src="https://unpkg.com/vue-star-rating/dist/star-rating.min.js"></script>
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="/js/materialize.js"></script>
   <script src="/js/init.js"></script>

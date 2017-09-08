@@ -17,11 +17,13 @@ Rails.application.routes.draw do
   get "/users/new" => "users#new"
   post "/users" => "users#create"
   get "/users/:id" => "users#show"
+  get "/profile" => "users#profile"
   get "/users/:id/edit" => "users#edit"
   patch "/users/:id" => "users#update"
   delete "/users/:id" => "users#destroy"
 
   get "/images" => "images#index"
+  get "/litpics" => "images#litpics"
   get "/images/new" => "images#new"
   post "/images" => "images#create"
   get "/images/:id" => "images#show"

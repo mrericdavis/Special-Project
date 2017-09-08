@@ -1,13 +1,13 @@
 
 
-<div class="carousel carousel-slider center" data-indicators="true" style="object-fit: cover; height: 750px;">
+<div class="carousel carousel-slider center" data-indicators="true" style="object-fit: cover; height: 930px;">
 
-  <% @users.each do |user| %>
+  <% @users.reverse.each do |user| %>
     <a class="carousel-item" href="/users/<%= user.id %>">
       <p class="Sparkle" id="name"><%= user.name %></p>
-      <img src="<%= user.avatar %>" style="object-fit: cover; width: 700px; height: 510px">
+      <img src="<%= user.avatar %>" style="object-fit: cover; width: 650px; height: 600px; margin-bottom: 100px;" >
         <br>
-        <br>
+        
         <% if current_user && current_user.following.include?(user) %>
           <p class="Bold">(Already Lit)</p>
         <% else %>

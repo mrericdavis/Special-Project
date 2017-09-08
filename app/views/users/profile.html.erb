@@ -1,0 +1,56 @@
+<h1 class="Sparkle"><%= @current_user.name %></h1>
+<div class="font">
+  <div class="row">
+    <% @current_user.images.reverse.each do |image| %>
+      <div class="row">
+        <div class="col s12 m6">
+          <div class="card" >
+            <div class="card-image">
+              <div class="card-panel hoverable">
+                <a href="/images/<%= image.id %>"><img src="<%= image.url%>" class="z-depth-5" class="card-panel hoverable" class="carousel-item" class="Sparkle">
+              </div>
+              <span class="card-title" style="color: black; font-weight: bold;"><%= image.title%>  </span>
+
+            </div>
+            <div class="card-content">
+              <% image.comments.each do |comment| %>
+              <h6 class="index"> <%= comment.text %> </h6>
+              <% end %>
+            </div>
+            <%= form_tag "/images/#{image.id}", method: "delete" do %>
+              <input type="submit" class="btn btn-danger" value="Delete Picture" >
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+
+
+      <% if current_user %>
+        <a href="/users/<%= @current_user.id %>/edit" class="btn btn-primary">Edit user</a>
+        <br>
+        <br>
+        <%= form_tag "/users/#{@current_user.id}", method: "delete" do %>
+          <input type="submit" class="btn btn-danger" value="Delete User" >
+        <% end %>
+      <% else %>
+      <% end %>
+
+
+
+      <br>
+      <br>
+      <br>
+      <br>
+      <a class="Sparkle2" href="/images" class="btn btn-primary">Back to the Lit-Pic's</a>
+  </div>
+
+
+
+
+    <!-- <input type="file" accept="image/*;capture=camera" class="center-align">
+    <input type="file" accept="video/*;capture=camcorder">
+    <input type="file" accept="audio/*;capture=microphone">
+    <input type="file" capture="camera" accept="image/*" id="cameraInput" name="cameraInput"> -->
+</div>

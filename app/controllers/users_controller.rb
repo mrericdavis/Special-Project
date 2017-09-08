@@ -34,7 +34,17 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
-    render "show.html.erb"
+    if current_user == @user
+      redirect_to "/profile"
+    else 
+      render "show.html.erb"
+    end
+  end
+
+  def profile
+    @images = Image.all.reverse
+    @user = User.find_by(id: params[:id])
+    render "profile.html.erb"
   end
 
   def edit
@@ -46,7 +56,9 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    render "destroy.html.erb"
+    @user = User.find_by(id: params[:id])
+    @user.delete
+    redirect_to "/users"  
   end
 
   def home

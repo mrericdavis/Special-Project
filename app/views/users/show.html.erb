@@ -10,9 +10,9 @@
       <div class="card" >
         <div class="card-image">
     <div class="card-panel hoverable">
-          <img src="<%= image.url%>" class="z-depth-5" class="card-panel hoverable" class="carousel-item" class="Sparkle">
+         <a href="/images/<%= image.id %>"><img src="<%= image.url%>" class="z-depth-5" class="card-panel hoverable" class="carousel-item" class="Sparkle">
   </div>
-          <span class="card-title"><%= image.title%> </span>
+          <span class="card-title" style="color: black; font-weight: bold;"><%= image.title%> </span>
       
         </div>
         <div class="card-content">
@@ -27,23 +27,25 @@
 
 
 
-
-<a href="/users/<%= @user.id %>/edit" class="btn btn-primary">Edit user</a>
-<br>
-<br>
-<%= form_tag "/users/#{@user.id}", method: "delete" do %>
-   <input type="submit" class="btn btn-danger" value="Delete User" >
+ <% if current_user %>
+  <% else %>
+    <a href="/users/<%= @user.id %>/edit" class="btn btn-primary">Edit user</a>
+    <br>
+    <br>
+    <%= form_tag "/users/#{@user.id}", method: "delete" do %>
+       <input type="submit" class="btn btn-danger" value="Delete User" >
+    <% end %>
 <% end %>
 
 
 
-
 <br>
-<a href="/users" class="btn btn-primary" >Back to the Home page</a>
+<a class="Sparkle2" href="/images" class="btn btn-primary">Back to the Lit-Pic's</a>
 </div>
 
 
-      
+  <% if current_user %>
+    <% else %>     
    
             <input type="file" accept="image/*;capture=camera" class="center-align">
             <input type="file" accept="video/*;capture=camcorder">
@@ -60,8 +62,9 @@
     <!-- Hidden canvas element. Used for taking snapshot of video. -->
     <canvas> </canvas>
 
-  </div>
-</div>
-  </div>
+        </div>
+        </div>
+        </div>
+  <% end %>
 
 

@@ -1,7 +1,7 @@
 <div id="app">
  
   <div class="row">
-     <% @images.each do |image| %>
+     <% @images.reverse.each do |image| %>
       <div class="col s12">
        <h2 class="Sparkle" id="name" > <a href="/users/<%= image.user.id %>"><%= image.user.name %></a>  </h2>  
         <div class="card" class="showpic"> 
@@ -28,9 +28,9 @@
             <br>
 
             <br>
-      
+       
               <%= form_tag "/comments" , method: :post do %>
-                Comment: <input type="text" class="index" name="text">   
+              <input type="text" class="index" name="text">   
                 <%= hidden_field_tag 'image_id', image.id %> 
                 <input class="index" type="submit" value="submit">
               <% end %>

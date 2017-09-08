@@ -90,3 +90,28 @@ margin-right: 20px;
     background-position: center;
     background-size: cover;
 }
+
+.special-i { 
+   position: relative; 
+   width: 100%;
+}
+
+/*span { 
+   position: absolute; 
+   top: 463px; 
+   left: 350px; 
+   right:600px;
+   width: 500%; 
+   color: white;
+   border-radius: 1px;
+}
+*/
+  .Sparkle2 {
+  
+  font-size:40px;
+  font-family:impact;
+  padding-top: 0px;
+  text-shadow: 0 0 20px #fefcc9, 10px -10px 30px #feec85, -20px -20px 40px #ffae34, 20px -40px 50px #ec760c, -20px -60px 60px #cd4606, 0 -80px 70px #973716, 10px -90px 80px #451b0e;
+  color: black;
+}
+
