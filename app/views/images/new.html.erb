@@ -6,29 +6,112 @@
   </div>
   <br>
   <div>
-   Dscription <input type="text" class="form-control" name="description" value="">
+   Description <input type="text" class="form-control" name="description" value="">
  </div>
  <br>
  <div>
-   Add Photo <input type="file" class="form-control" name="url" value="">
+   Add Photo <input type="file" class="form-control" id="upload_datafile" name="url" value="">
  </div>
   <br>
-  <input type="submit" class="btn btn-default" value="Add Lit--Pic">
+   <div id="results"></div>
+  <!-- <input type="submit" class="btn btn-default" value="Add Lit-Pic"> -->
 <% end %>
-<!-- <br>
-Upload From Camera: <input type="file" accept="image/*;capture=camera">
-<br>
-Capture From Photo:<input type="file" capture="camera" accept="image/*" id="cameraInput" name="cameraInput">
-<br>
-Upload From Camcorder:<input type="file" accept="video/*;capture=camcorder">
-<br>
-Upload From Microphone:<input type="file" accept="audio/*;capture=microphone">
-<br>
 
- <a href="#" id="take-photo" title="Take Photo"><i class="material-icons">camera_alt</i></a>
-      <a href="#" id="download-photo" download="selfie.png" title="Save Photo" class="disabled"><i class="material-icons">file_download</i></a>  
-    </div>
-<!-- <!-
-    <%= form_for @user, url: users_path, html: { multipart: true } do |form| %>
-  <%= form.file_field :url %>
-<% end %> 
+
+<script>
+/* global $ */
+// Based on code from http://code.hootsuite.com/html5/ && http://rohitrox.github.io/2013/07/19/canvas-images-and-rails/
+if (window.File && window.FileReader && window.FormData) {
+  var $inputField = $('#upload_datafile');
+  $inputField.on('change', function(e) {
+    var file = e.target.files[0];
+    if (file) {
+      if (/^image\//i.test(file.type)) {
+        console.log("valid image");
+        readFile(file);
+      } else {
+        console.log('Not a valid image!');
+      }
+    }
+  });
+} else {
+  console.log("File upload is not supported!");
+}
+function readFile(file) {
+  var reader = new FileReader();
+  reader.onloadend = function() {
+    processFile(reader.result, file.type);
+  };
+  reader.onerror = function() {
+    console.log('There was an error reading the file!');
+  };
+  reader.readAsDataURL(file);
+}
+function processFile(dataURL, fileType) {
+  var maxWidth = 800;
+  var maxHeight = 800;
+  var image = new Image();
+  image.src = dataURL;
+  image.onload = function() {
+    var width = image.width;
+    var height = image.height;
+    var shouldResize = (width > maxWidth) || (height > maxHeight);
+    if (!shouldResize) {
+      console.log('!shouldResize');
+      sendFile(dataURL);
+      return;
+    }
+    var newWidth;
+    var newHeight;
+    if (width > height) {
+      newHeight = height * (maxWidth / width);
+      newWidth = maxWidth;
+    } else {
+      newWidth = width * (maxHeight / height);
+      newHeight = maxHeight;
+    }
+    var canvas = document.createElement('canvas');
+    canvas.width = newWidth;
+    canvas.height = newHeight;
+    var context = canvas.getContext('2d');
+    context.drawImage(this, 0, 0, newWidth, newHeight);
+    dataURL = canvas.toDataURL(fileType);
+    sendFile(dataURL);
+  };
+  image.onerror = function() {
+    console.log('There was an error processing your file!');
+  };
+}
+function sendFile(fileData) {
+  document.getElementById('results').innerHTML = 'loading...';
+  var formData = new FormData($('form')[0]);
+  formData.set('url', dataURLtoBlob(fileData), 'blob.png');
+  $.ajax({
+    type: $('form')[0].method,
+    url: $('form')[0].action,
+    data: formData,
+    contentType: false,
+    processData: false,
+    success: function(response) {
+      window.location.href = '/images';
+      if (response.success) {
+        console.log('Your file was successfully uploaded!', response);
+        document.getElementById('results').innerHTML = response.data.ParsedResults[0].ParsedText;
+      } else {
+        console.log('There was an error uploading your file - response.success not true!', response);
+      }
+    },
+    error: function(response) {
+      console.log('There was an error uploading your file!', response);
+    }
+  });
+}
+function dataURLtoBlob(dataURL) {
+  var binary = atob(dataURL.split(',')[1]);
+  var array = [];
+  for (var i = 0; i < binary.length; i++) {
+    array.push(binary.charCodeAt(i));
+  }
+  return new Blob([new Uint8Array(array)], {type: 'image/png'});
+}
+</script>

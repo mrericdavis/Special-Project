@@ -11,7 +11,7 @@
         <h1 class="Sparkle" ><a href="/users/<%= @image.user.id %>"><%= @image.user.name %> </a> - <%= @image.title %></h1>
       <div class="special-i">
           <% if  @message == "THIS PIC IS LIT" %>
-            <h1 class="center-align"> <img class="card-panel hoverable litty" id="showpic" src="<%= @image.url %>"></h1>
+           <h1 class="center-align"> <img class="card-panel hoverable litty" id="showpic" src="<%= @image.url %>"></h1>
           <% else %>
              <h1 class="center-align"> <img class="card-panel hoverable" id="showpic" src="<%= @image.url %>"></h1>
           <% end %>   
@@ -42,6 +42,7 @@
 
 
 
+  <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
 
 
 <style type="text/css">

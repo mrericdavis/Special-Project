@@ -24,7 +24,7 @@ class ImagesController < ApplicationController
       user_id: current_user.id
     )
     image.save
-    redirect_to "/images"   
+    redirect_to "/images"
   end
 
   def show
