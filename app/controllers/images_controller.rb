@@ -2,13 +2,22 @@ class ImagesController < ApplicationController
   def index
     @users = User.all 
     @images = Image.all.reverse
+    @grouped_images = @images.group_by { |image| image.message }
     render "index.html.erb"
   end
 
   def litpics
     @users = User.all 
     @images = Image.all.reverse
+    @grouped_images = Image.where(message: "THIS PIC IS LIT")
     render "litpics.html.erb"
+  end
+
+   def notlitpics
+    @users = User.all 
+    @images = Image.all.reverse
+    @grouped_images = Image.where(message: "THIS PIC IS NOT LIT AT ALL")
+    render "notlitpics.html.erb"
   end
   
   def new
@@ -54,36 +63,13 @@ class ImagesController < ApplicationController
     @names = @data["outputs"][0]["data"]["concepts"].map { |concept| concept["name"] }
     @names = @names[0..9]
     if @names.include? "bed" 
-      @message = "GET OUT OF BED"
-    elsif @names.include? "dog"
-      @message = "NOT MY DOG"
-    elsif @names.include? "nude"
-      @message = "PUT SOME DAMN CLOTHES ON"
-    elsif @names.include? "cat"
-      @message = "GOT DAMN CAT"
-    elsif @names.include? "money"
-      @message = "GIVE ERIC SOME"
-    elsif @names.include? "Squad"
-      @message = "SQUAADDDD"
-    elsif (@names & ["party", "crowd", "nightclub", "performance", "concert", "supercar", "celebration", "fashion"]).length > 0
+      @message = "THIS PIC IS NOT LIT AT ALL"
+    elsif (@names & ["party", "crowd", "nightclub", "performance", "concert", "supercar", "facial expression", "success", "celebration", "accomplishment", "fashion"]).length > 0
       @message = "THIS PIC IS LIT"
-    elsif @names.include? "car"
-      @message = "NICE CAR"
-    elsif @names.include? "wedding"
-      @message = "CONGRATULATIONS!!!!"
-    elsif @names.include? "fire"
-      @message = "THATS HOT!!!!"
-    elsif @names.include? "baby"
-      @message = "BABIES ARE AWSOME!!!!"
-    elsif @names.include? "food"
-      @message = "THAT LOOKS GOOD!!!!"
-    elsif @names.include? "house"
-      @message = "NICE HOME!!!!"
-    elsif @names.include? "bus"
-      @message = "NICE BUS!!!!"
     elsif @names
-      @message = "NOT LIT AT ALL"  
+      @message = "THIS PIC IS NOT LIT AT ALL"  
     end
+    @image.update(message: @message)
     render "show.html.erb"
   end
 
@@ -96,7 +82,13 @@ class ImagesController < ApplicationController
   def destroy
     @image = Image.find_by(id: params[:id])
     @image.delete
-    redirect_to "/users"
+    redirect_to "/profile"
   end
+
+  def search
+    search = params[:search_terms]
+    @images = Image.where("title iLIKE ?", "%#{search}%" )
+    render "index.html.erb"  
+  end  
 end
 

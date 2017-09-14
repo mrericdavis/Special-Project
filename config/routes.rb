@@ -21,15 +21,19 @@ Rails.application.routes.draw do
   get "/users/:id/edit" => "users#edit"
   patch "/users/:id" => "users#update"
   delete "/users/:id" => "users#destroy"
+  get "/users_search" => "users#search"
 
   get "/images" => "images#index"
   get "/litpics" => "images#litpics"
+  get "/notlitpics" => "images#notlitpics"
   get "/images/new" => "images#new"
   post "/images" => "images#create"
   get "/images/:id" => "images#show"
   get "/images/:id/edit" => "images#edit"
   patch "/images/:id" => "images#update"
   delete "/images/:id" => "images#destroy"
+  get "/images_search" => "images#search"
+
 
   post "/comments" => "comments#create"
 

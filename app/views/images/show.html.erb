@@ -11,10 +11,12 @@
         <h1 class="Sparkle" ><a href="/users/<%= @image.user.id %>"><%= @image.user.name %> </a> - <%= @image.title %></h1>
       <div class="special-i">
           <% if  @message == "THIS PIC IS LIT" %>
-           <h1 class="center-align"> <img class="card-panel hoverable litty" id="showpic" src="<%= @image.url %>"></h1>
+           <script type="text/javascript"> responsiveVoice.speak("hello world","UK English Male", {rate: 1.5});</script>  
+            <h1 class="center-align"> <img class="litty" id="showpic" src="<%= @image.url %>"></h1>
           <% else %>
              <h1 class="center-align"> <img class="card-panel hoverable" id="showpic" src="<%= @image.url %>"></h1>
-          <% end %>   
+          <% end %>  
+          <br> 
          <span class="Sparkle2"><%= @message %></span>
       </div> 
        <br>
@@ -39,28 +41,19 @@
      
 
 
+<script>
+  
+  $( document ).ready(function() {
+     responsiveVoice.speak("<%= @message %>","US English Female");
+   });
 
+</script>
 
 
   <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 
 
-<style type="text/css">
-  #showpic {
-    height: 500px;
-    width: auto;
-    min-width: 500px;
-    min-height: 400px;
-    max-height: 1000px;
-    max-width: 1000px;
-}
-
-  .litty{
-    border: 20px solid transparent;
-    border-image: url(https://ak5.picdn.net/shutterstock/videos/24162520/thumb/1.jpg) 30 stretch;
-}
-
-</style>
 
 
 <script type="text/javascript">
@@ -68,3 +61,4 @@ function changeStar() {
    
 }
 </script>
+

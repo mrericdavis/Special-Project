@@ -1,3 +1,14 @@
+  <nav class="black">
+    <div class="nav-wrapper">
+      <%= form_tag "/users_search", method: :get do %>
+        <div class="input-field">
+          <input id="search" type="search" placeholder="Search" name="search_terms" required>
+          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+          <i class="material-icons">close</i>
+        </div>
+      <%end%>
+    </div>
+  </nav>
 
 
 <div class="carousel carousel-slider center" data-indicators="true" style="object-fit: cover; height: 930px;">
@@ -19,13 +30,7 @@
     </a>
   <% end %>
 </div>
-<!-- 
 
-<div id="app">
-  <div>
-    Enter new comment: <input type="text" v-model="newComment">
-    <button v-on:click="CreateComment()">Submit Comment</button>
-  </div>
-  <div v-for="comment in comments">{{comment.username}} - {{comment.text}}</div> 
-</div>
- -->
+
+
+

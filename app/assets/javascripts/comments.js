@@ -23,6 +23,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
       });
     },
     methods: {
+      setRating: function(rating){
+        this.rating= rating;
+      },
       CreateComment: function() {
         if (this.newComment) {
           Rails.ajax({

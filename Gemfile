@@ -20,6 +20,8 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'therubyracer', platforms: :ruby
 gem 'dotenv-rails'
 gem "unirest", "~> 1.1.2"
+gem 'twilio-ruby' 
+
 gem 'paperclip-cloudinary'
 gem "paperclip", "~> 5.0.0"
 # Use CoffeeScript for .coffee assets and views
@@ -28,13 +30,14 @@ gem 'coffee-rails', '~> 4.2'
 # gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
+gem 'espeak-ruby', require: "espeak"
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails', '~> 4.3.1'
-
+gem 'table_print'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

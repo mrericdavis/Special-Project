@@ -47,6 +47,8 @@
 body {
   background-color: black;
   color:white;
+  max-width: auto;
+  max-height: auto;
 }
 
 .font {
@@ -115,3 +117,30 @@ margin-right: 20px;
   color: black;
 }
 
+  #showpic {
+    height: 500px;
+    width: auto;
+    min-width: 500px;
+    min-height: 400px;
+    max-height: 1000px;
+    max-width: 1000px;
+    border-color: transparent;
+}
+
+  .litty{
+    border: 25px solid transparent;
+    border-image: url(http://68.media.tumblr.com/d4ca7b79dd84cf680e1cfc1776317077/tumblr_mtw0jvTeNH1sjwvlio1_500.gif) 100 round;
+}
+  .littyname{
+  
+  font-size:30px;
+  font-family:impact;
+  padding-top: 0px;
+
+  
+ -webkit-text-fill-color: transparent;
+ background: -webkit-linear-gradient(transparent, transparent),
+             url(https://68.media.tumblr.com/04172a5e25ef95894e561e6f560c47a8/tumblr_oqx3xabGCS1uhjffgo1_500.gif) repeat;
+ background: -o-linear-gradient(transparent, transparent);
+ -webkit-background-clip: text;
+}

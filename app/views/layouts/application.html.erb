@@ -13,12 +13,11 @@
 
   <body>
 
-
- 
-     <nav class="black" role="navigation" >
-       <div class="nav-wrapper container">
-         <a id="logo-container" href="/users#" class="Sparkle">"Lit Pics"</a>
-          <ul class="right hide-on-med-and-down">
+  <nav class="black">
+    <div class="nav-wrapper container">
+      <a href="/users" class="Sparkle">"Lit Pics"</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
               <% if current_user %>
                <li><a class="font" href="/logout">Log Out</a></li>
                <li><a class="font" href="/profile">My Profile</a></li>
@@ -30,14 +29,24 @@
                <li><a class="font" href="/users">People Getting Lit</a></li>
                <li><a class="font" href="/friends">Friends</a></li>
                <li><a class="font" href="/images">All Images</a></li>
-               <!-- <li><a class="font" href="/litpics">Lit</a></li> -->
                <li><a class="font" href="/images/new">Upload A New Image</a></li>
           </ul>
-         <a href="/#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-       </div>
-     </nav>
-
-
+      <ul class="side-nav" id="mobile-demo">
+              <% if current_user %>
+               <li><a class="font" href="/logout">Log Out</a></li>
+               <li><a class="font" href="/profile">My Profile</a></li>
+              <% else %>
+               <li><a class="font" href="/login">Login</a></li>
+               <li><a class="font" href="/signup">Signup</a></li>
+               <li><a class="font" href="/">Home</a></li>
+              <% end %>
+               <li><a class="font" href="/users">People Getting Lit</a></li>
+               <li><a class="font" href="/friends">Friends</a></li>
+               <li><a class="font" href="/images">All Images</a></li>
+               <li><a class="font" href="/images/new">Upload A New Image</a></li>
+      </ul>
+    </div>
+  </nav>
 
     
     <div class="container">
@@ -54,54 +63,74 @@
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="/js/materialize.js"></script>
   <script src="/js/init.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
-<script>
-<script>
-if (annyang) {
-  // Let's define our first command. First the text we expect, and then the function it should call
-  var commands = {
-    'show tps report': function() {
-      $('#tpsreport').animate({bottom: '-100px'});
-    }
-  };
+  <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.4.0/annyang.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/speechkitt.min.js"></script>
+  <script>
+  if (annyang) {
+    // Add our commands to annyang
+    annyang.addCommands({
+      'take me to all the pictures': function() { 
+         window.location.href = "/images";
+       },
+      'take me to all my friends': function() { 
+         window.location.href = "/friends";
+       },
+      'take me to my page': function() { 
+         window.location.href = "/profile";
+       },
+      'take me to everybody': function() { 
+         window.location.href = "/users";
+       },
+      'upload a new photo': function() { 
+         window.location.href = "/images/new";
+       },
+      'take me to Eric Davis Page': function() { 
+         window.location.href = "/users/1";
+       },
+      'take me to Peter Jang page': function() { 
+         window.location.href = "/users/2";
+       },
+      'take me to Theo page': function() { 
+         window.location.href = "/users/3";
+       },
+      'take me to Michelle Obama page': function() { 
+         window.location.href = "/users/10";
+       },
+      'take me to Monica page': function() { 
+         window.location.href = "/users/13";
+       },
+      'take me to Myles page': function() { 
+         window.location.href = "/users/11";
+       },
+      'take me to Rena page': function() { 
+         window.location.href = "/users/12";
+       },
+      'take me to Bona page': function() { 
+         window.location.href = "/users/9";
+       },
+      'take me to Will Smith page': function() { 
+         window.location.href = "/users/5";
+       },
+      'take me to Denzel Washington page': function() { 
+         window.location.href = "/users/4";
+       },
+      'take me to all not lit pics': function() { 
+         window.location.href = "/notlitpics";
+       },
+      'take me to all lit pics': function() { 
+         window.location.href = "/litpics";
+       },
+    });
 
-  // Add our commands to annyang
-  annyang.addCommands(commands);
+    // Tell KITT to use annyang
+    SpeechKITT.annyang();
 
-  // Start listening. You can call this here, or attach this call to an event, button, etc.
-  annyang.start();
-}
-</script>
+    // Define a stylesheet for KITT to use
+    SpeechKITT.setStylesheet('//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/themes/flat.css');
 
-<script>
-var commands = {
-  // annyang will capture anything after a splat (*) and pass it to the function.
-  // e.g. saying "Show me Batman and Robin" is the same as calling showFlickr('Batman and Robin');
-  'show me *tag': showFlickr,
-
-  // A named variable is a one word variable, that can fit anywhere in your command.
-  // e.g. saying "calculate October stats" will call calculateStats('October');
-  'calculate :month stats': calculateStats,
-
-  // By defining a part of the following command as optional, annyang will respond to both:
-  // "say hello to my little friend" as well as "say hello friend"
-  'say hello (to my little) friend': greeting
-};
-
-var showFlickr = function(tag) {
-  var url = 'http://api.flickr.com/services/rest/?tags='+tag;
-  $.getJSON(url);
-}
-
-var calculateStats = function(month) {
-  $('#stats').text('Statistics for '+month);
-}
-
-var greeting = function() {
-  $('#greeting').text('Hello!');
-}
-
+    // Render KITT's interface
+    SpeechKITT.vroom();
+  }
 </script>
   </body>
 </html>

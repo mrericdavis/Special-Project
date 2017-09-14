@@ -1,12 +1,33 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <nav class="black">
+    <div class="nav-wrapper">
+      <%= form_tag "/images_search", method: :get do %>
+        <div class="input-field">
+          <input id="search" type="search" placeholder="Search" name="search_terms" required>
+          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+          <i class="material-icons">close</i>
+        </div>
+      <%end%>
+    </div>
+  </nav>
+
 <div id="app">
+
  
+
   <div class="row" >
      <% @images.each do |image| %>
       <div class="col s12" data-imageid="<%= image.id %>">
-       <h2 class="Sparkle" id="name" > <a href="/users/<%= image.user.id %>"><%= image.user.name %></a>  </h2>  
+       <h2 class="Sparkle" id="name" > <a href="/users/<%= image.user.id %>"><%= image.user.name %></a> 
+       </h2>  
+        <% if  image.message == "THIS PIC IS LIT" %>
+           <h5 class="littyname"><i class="em em-100"> </i><u> <%= image.message%> </u> <i class="em em-100"></i></h5>
+         <% else %>  
+           <h5><i class="em em-x"></i> <%= image.message%>  <i class="em em-x"></i> </h5>
+        <% end %>   
         <div class="card" class="showpic"> 
            <div class="card-image waves-effect waves-block waves-light">
-            <a href="/images/<%= image.id %>">  <img class="activator" class="imgsize"  src="<%= image.url %> " style="object-fit: cover; max-height:800px;"></a> 
+            <a href="/images/<%= image.id %>">  <img class="activator" class="imgsize"  src="<%= image.url %>" style="object-fit: cover; max-height:800px;"></a> 
            </div>
                <div class="card-content">
                   <span class="card-title activator grey-text text-darken-4"> <%= image.title %>  
@@ -42,3 +63,6 @@
 
 </style>
 
+<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+
+<!-- <i class="em em-some-emoji"></i> -->

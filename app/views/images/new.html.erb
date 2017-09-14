@@ -83,7 +83,7 @@ function processFile(dataURL, fileType) {
   };
 }
 function sendFile(fileData) {
-  document.getElementById('results').innerHTML = 'loading...';
+  document.getElementById('results').innerHTML = 'Is This Pic Lit Or Not???';
   var formData = new FormData($('form')[0]);
   formData.set('url', dataURLtoBlob(fileData), 'blob.png');
   $.ajax({

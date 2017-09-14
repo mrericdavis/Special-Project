@@ -77,4 +77,10 @@ class UsersController < ApplicationController
     @images.sort_by { |image| image.created_at }
     render "friend.html.erb"
   end
+
+    def search
+    search = params[:search_terms]
+    @users = User.where("name iLIKE ?", "%#{search}%" )
+    render "index.html.erb"  
+  end
 end
