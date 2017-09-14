@@ -64,7 +64,7 @@ class ImagesController < ApplicationController
     @names = @names[0..9]
     if @names.include? "bed" 
       @message = "THIS PIC IS NOT LIT AT ALL"
-    elsif (@names & ["party", "crowd", "nightclub", "performance", "concert", "supercar", "facial expression", "success", "celebration", "accomplishment", "fashion"]).length > 0
+    elsif (@names & ["party", "crowd", "nightclub", "performance", "concert", "group", "supercar", "facial expression", "success", "celebration", "accomplishment", "fashion"]).length > 0
       @message = "THIS PIC IS LIT"
     elsif @names
       @message = "THIS PIC IS NOT LIT AT ALL"  
